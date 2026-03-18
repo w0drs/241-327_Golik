@@ -1,13 +1,20 @@
+import sys
+import os
+from pathlib import Path
+
+# Добавляем путь к backend папке
+backend_dir = Path(__file__).parent.absolute()
+sys.path.insert(0, str(backend_dir))
+
 from fastapi import FastAPI, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import Optional, List
 
+import schemas
+
 from database import get_db, engine
 from models import AnimeModel, Base
-import schemas
-import os, sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Создаем таблицы (если еще нет)
 Base.metadata.create_all(bind=engine)
 
