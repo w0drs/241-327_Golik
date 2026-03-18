@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: anime_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: anime_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - anime_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: anime_backend
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: anime_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - anime_network
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: anime_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+    depends_on:
+      - backend
+    networks:
+      - anime_network
+
+volumes:
+  postgres_data:
+
+networks:
+  anime_network:
+    driver: bridge

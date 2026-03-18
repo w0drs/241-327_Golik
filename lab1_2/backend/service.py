@@ -2,9 +2,9 @@ from fastapi import FastAPI, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import Optional, List
 
-from .database import get_db, engine
-from .models import AnimeModel, Base
-from . import schemas
+from database import get_db, engine
+from models import AnimeModel, Base
+import schemas
 import os, sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
