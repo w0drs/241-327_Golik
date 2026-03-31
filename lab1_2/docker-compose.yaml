@@ -7,8 +7,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-12345}
       POSTGRES_DB: ${POSTGRES_DB:-anime_db}
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     networks:
@@ -31,8 +29,6 @@ services:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
       POSTGRES_DB: ${POSTGRES_DB:-anime_db}
-    ports:
-      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy

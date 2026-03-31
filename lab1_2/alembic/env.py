@@ -6,19 +6,15 @@ import sys
 import os
 from dotenv import load_dotenv
 
-# Добавляем путь к папке lab1_2 в sys.path
-# __file__ - это путь к env.py, он в lab1_2/alembic/env.py
-# поднимаемся на два уровня вверх: alembic/ -> lab1_2/
 project_path = os.path.dirname(os.path.dirname(__file__))
 sys.path.insert(0, project_path)
 
-print(f"Добавлен путь: {project_path}")  # Для отладки
+print(f"Добавлен путь: {project_path}")
 
-# Загружаем .env из папки lab1_2
 env_path = os.path.join(project_path, '.env')
 load_dotenv(env_path)
 
-# Импортируем Base из backend.database
+
 try:
     from backend.database import Base
     from backend.models import AnimeModel
@@ -36,18 +32,20 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Получаем параметры из .env
-POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
-POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "12345")
-POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
-POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
-POSTGRES_DB = os.getenv("POSTGRES_DB", "anime_db")
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+
+POSTGRES_USER = "postgres"
+POSTGRES_PASSWORD = "qwerty0504"
+POSTGRES_HOST = "localhost"
+POSTGRES_PORT = "5432"
+POSTGRES_DB = "anime_db"
+
+# Формируем строку подключения БЕЗ специальных символов
+DATABASE_URL = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
 
 print(f"Подключение к БД: {POSTGRES_USER}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}")
 
-# Формируем правильный URL
-DATABASE_URL = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
-config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 target_metadata = Base.metadata
 

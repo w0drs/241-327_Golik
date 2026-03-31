@@ -1,5 +1,4 @@
 import sys
-import os
 from pathlib import Path
 
 # Добавляем путь к backend папке
@@ -35,7 +34,6 @@ def list_anime(
         genre: Optional[str] = None,
         db: Session = Depends(get_db)
 ):
-    """Получить список аниме с пагинацией и фильтрацией"""
     query = db.query(AnimeModel)
 
     # Фильтры

@@ -12,7 +12,7 @@ server {
         log_not_found off;
     }
 
-    # Прокси для API запросов (соответствует твоему примеру)
+    # Прокси для API запросов
     location ~ ^/(admin|api)/?(.*)$ {
         proxy_pass http://backend:8000;
         proxy_set_header Host $host;
