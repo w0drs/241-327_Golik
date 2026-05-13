@@ -26,7 +26,7 @@ engine = create_engine(DATABASE_URL)
 # Создаем фабрику сессий
 SessionLocal = sessionmaker(bind=engine)
 
-# Функция для получения сессии (будем использовать в FastAPI)
+# Функция для получения сессии
 def get_db():
     db = SessionLocal()
     try:

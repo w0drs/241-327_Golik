@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, Text, Integer
-from .database import Base
+from database import Base
 
 class AnimeModel(Base):
     __tablename__ = "anime"
