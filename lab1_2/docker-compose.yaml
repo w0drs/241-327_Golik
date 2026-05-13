@@ -26,6 +26,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      - static_volume:/staticfiles
     networks:
       - anime_network
 
