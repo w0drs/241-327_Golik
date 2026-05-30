@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Anime REST Client</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayoutMain">
+    <item>
+     <widget class="QGroupBox" name="groupBoxServer">
+      <property name="title">
+       <string>Server Configuration</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayoutServer">
+       <item>
+        <widget class="QLabel" name="labelServerURL">
+         <property name="text">
+          <string>Server URL:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="serverUrlInput">
+         <property name="text">
+          <string>http://localhost</string>
+         </property>
+         <property name="placeholderText">
+          <string>http://localhost or http://192.168.1.100</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnConnect">
+         <property name="text">
+          <string>Connect</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacerServer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxOperations">
+      <property name="title">
+       <string>REST API Operations</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayoutButtons">
+       <item>
+        <widget class="QPushButton" name="btnList">
+         <property name="text">
+          <string>LIST (GET)</string>
+         </property>
+         <property name="minimumHeight">
+          <number>35</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnGet">
+         <property name="text">
+          <string>GET by ID</string>
+         </property>
+         <property name="minimumHeight">
+          <number>35</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnCreate">
+         <property name="text">
+          <string>CREATE (POST)</string>
+         </property>
+         <property name="minimumHeight">
+          <number>35</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnUpdate">
+         <property name="text">
+          <string>UPDATE (PUT)</string>
+         </property>
+         <property name="minimumHeight">
+          <number>35</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDelete">
+         <property name="text">
+          <string>DELETE</string>
+         </property>
+         <property name="minimumHeight">
+          <number>35</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxID">
+      <property name="title">
+       <string>ID Parameter (for GET, UPDATE, DELETE)</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayoutID">
+       <item>
+        <widget class="QLabel" name="labelID">
+         <property name="text">
+          <string>Anime ID:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="idInput">
+         <property name="placeholderText">
+          <string>Enter anime ID number...</string>
+         </property>
+         <property name="maximumWidth">
+          <number>200</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacerID">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxData">
+      <property name="title">
+       <string>Anime Data (for CREATE and UPDATE)</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutData">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelTitle">
+         <property name="text">
+          <string>Title:*</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="titleInput">
+         <property name="placeholderText">
+          <string>Enter anime title...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelGenres">
+         <property name="text">
+          <string>Genres:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="genresInput">
+         <property name="placeholderText">
+          <string>Action, Drama, Fantasy...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelStudios">
+         <property name="text">
+          <string>Studios:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="studiosInput">
+         <property name="placeholderText">
+          <string>Studio name...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="labelEpisodes">
+         <property name="text">
+          <string>Episodes:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="episodesInput">
+         <property name="placeholderText">
+          <string>Number of episodes...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelYear">
+         <property name="text">
+          <string>Year:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="yearInput">
+         <property name="placeholderText">
+          <string>Release year...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="labelRating">
+         <property name="text">
+          <string>Rating:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="ratingInput">
+         <property name="placeholderText">
+          <string>PG-13, R, R+...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <widget class="QLabel" name="labelNote">
+         <property name="text">
+          <string>* Title is required for CREATE and UPDATE operations</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #666666; font-style: italic;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxPagination">
+      <property name="title">
+       <string>Pagination</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayoutPagination">
+       <item>
+        <widget class="QLabel" name="labelPage">
+         <property name="text">
+          <string>Page:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinPage">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>9999</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelLimit">
+         <property name="text">
+          <string>Items per page:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboLimit">
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>20</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>50</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>100</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnPrevPage">
+         <property name="text">
+          <string>Previous</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnNextPage">
+         <property name="text">
+          <string>Next</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRefresh">
+         <property name="text">
+          <string>Refresh</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelTotalInfo">
+         <property name="text">
+          <string>Total: 0 items</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #666666; font-weight: bold;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacerPagination">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxTable">
+      <property name="title">
+       <string>Anime List</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutTable">
+       <item>
+        <widget class="QTableWidget" name="animeTable">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxOutput">
+      <property name="title">
+       <string>Server Response Log</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayoutOutput">
+       <item>
+        <widget class="QTextEdit" name="outputText">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <family>Courier New</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           QTextEdit {
+               background-color: white;
+               color: black;
+               font-family: Courier New;
+               font-size: 10pt;
+           }
+          </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

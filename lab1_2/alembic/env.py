@@ -36,7 +36,7 @@ load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 POSTGRES_USER = "postgres"
 POSTGRES_PASSWORD = "qwerty0504"
-POSTGRES_HOST = "localhost"
+POSTGRES_HOST = "postgres"
 POSTGRES_PORT = "5432"
 POSTGRES_DB = "anime_db"
 
